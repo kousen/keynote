@@ -1,0 +1,29 @@
+apply plugin: 'groovy'
+
+ext {
+    groovyVersion = '2.4.5'
+    gebVersion = '1.0'
+    seleniumVersion = '3.0.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.codehaus.groovy:groovy-all:${groovyVersion}"
+    compile "org.gebish:geb-core:$gebVersion"
+    compile 'org.jsoup:jsoup:1.10.2'
+
+    testCompile "org.gebish:geb-spock:$gebVersion"
+    testCompile "org.gebish:geb-junit4:$gebVersion"
+
+    compile "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
+    compile "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
+
+    compile("io.github.bonigarcia:webdrivermanager:1.5.0") {
+        exclude group: 'org.seleniumhq.selenium'
+    }
+
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+}
